@@ -7,8 +7,8 @@ function NavBar({isLoggedIn, spendableMoney, currentPath}) {
   return (
     <div>
       <nav>
-      <NavLink exact to="/"> Home </NavLink>
-      <NavLink exact to={path}> Account </NavLink>
+      <NavLink className="nav-element"exact to="/"> Home </NavLink>
+      <NavLink className="nav-element"exact to={path}> Account </NavLink>
       {
         isLoggedIn && currentPath !=="/account" && spendableMoney ? <p>You have ${spendableMoney} to spend</p> : null
       }

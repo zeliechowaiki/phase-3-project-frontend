@@ -81,7 +81,7 @@ function Account({account, onLogOut, onPathChange, spendableMoney, changeSpendab
         }
         </p>
       <div className={moneyFormIsHidden ? "hidden" : ""}>
-        <form onSubmit={handleMoneyFormSubmit}>
+        <form className="account-form"onSubmit={handleMoneyFormSubmit}>
           <label htmlFor="amount">Choose amount</label>
           <input type="number" id="amount-dropdown" name="amount" min="25" max="10000" 
           required step="5" value={moneyFormInputs.amount} onChange={handleMoneyChange}></input><br></br>

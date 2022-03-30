@@ -1,3 +1,10 @@
+.app {
+  background-image: url("https://cdn.pixabay.com/photo/2017/06/13/13/51/marble-2398946__480.jpg");
+  background-repeat: none;
+  background-size: contain;
+  height:100%;
+  width:100%;
+}
 a {
   color: inherit;
 }
@@ -8,10 +15,25 @@ a {
   outline: 1px solid;
   display: inline-block;
   margin-bottom: 30px;
+  font-family: 'ELEGANT', sans-serif;
 }
 
 .item-card > * {
   text-align: center;
+  width:150px;
+  height:150px;
+  object-fit: cover;
+  font-family: 'ELEGANT', sans-serif;
+
+}
+
+.item-image{
+   transition: all 1.2s ease-in-out; 
+   /* outline-width: 30px; */
+}
+.item-image:hover {
+  transform: scale(1.15);
+  /* outline-width: 30px; */
 }
 
 .hidden {
@@ -20,4 +42,15 @@ a {
 
 .disabled-link {
   pointer-events: none;
+}
+.homepage-head {
+  font-family: 'ELEGANT', sans-serif;
+}
+
+.nav-element{
+  font-family: 'ELEGANT', sans-serif;
+  font-size:3em;
+}
+.account-form{
+  font-family: 'ELEGANT', sans-serif;
 }

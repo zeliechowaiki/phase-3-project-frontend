@@ -71,6 +71,7 @@ function App() {
   if (items.length === 0) return null;
 
   return (
+    <div className="app">
     <Router>
       <NavBar isLoggedIn={isLoggedIn} spendableMoney={spendableMoney} currentPath={currentPath}/>
       <Switch>
@@ -94,6 +95,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    </div>
   );
 }
 
