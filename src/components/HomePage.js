@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import ItemCard from "./ItemCard";
 
-function HomePage({items, onPathChange, isLoggedIn}) {
-  let location = useLocation();
-  
-  useEffect(() => {
-    onPathChange(location.pathname);
-  },[location.pathname, onPathChange]);
+function HomePage({items, currentAccount, bids, currentTime, currentPath}) {
 
   return(
     <div>
       <h1>Items:</h1>
       {
-        items.map(item => {
-          return <ItemCard key={item.id} item={item} isLoggedIn={isLoggedIn}/>
+        items.sort((a,b) => a.auction_end - b.auction_end).map(item => {
+          return <ItemCard key={item.id} item={item} currentTime={currentTime}
+          currentAccount={currentAccount} bids={bids} currentPath={currentPath}/>
         })
       }
     </div>

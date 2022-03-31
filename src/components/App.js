@@ -1,5 +1,6 @@
 import '../App.css';
-import React, { useEffect, useState } from "react";
+import {React, useEffect, useState } from "react";
+import timedif from './timedif';
 import HomePage from './HomePage';
 import NavBar from './NavBar';
 import Item from './Item';
@@ -11,86 +12,106 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 function App() {
   const [items, setItems] = useState([]);
   const [users, setUsers] = useState([]);
+  const [bids, setBids] = useState([]);
   const [currentPath, setCurrentPath] = useState('/');
   const [currentAccount, setCurrentAccount] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [myBids, setMyBids] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date().toUTCString().split(' ')[4]);
   let spendableMoney;
 
-  function loadData() {
+  useEffect(() => {
+    setInterval(() => {
+      setCurrentTime(new Date().toUTCString().split(' ')[4]);
+    },1000);
+  },[]);
+
+  function loadItems() {
     fetch('http://localhost:9292/items')
     .then(response => response.json())
     .then(data => setItems(data));
+  }
 
+  function loadUsers() {
     fetch('http://localhost:9292/users')
     .then(response => response.json())
     .then(data => setUsers(data));
   }
 
-  function reloadCurrentAccount(id) {
-    fetch(`http://localhost:9292/users/${id}`)
+  function loadBids() {
+    fetch('http://localhost:9292/bids')
     .then(response => response.json())
-    .then(data => setCurrentAccount(data));
+    .then(data => setBids(data));
   }
 
-  function onPathChange(newPath) {
-    setCurrentPath(newPath);
-  }
+  useEffect(() => {
+    loadItems();
+    loadUsers();
+    loadBids();
+  },[currentPath]);
 
   function onLogin(newLogin) {
-    setIsLoggedIn(true);
     setCurrentAccount(newLogin);
-    changeMyBids(newLogin.id);
   }
 
   function onLogOut() {
-    setIsLoggedIn(false);
     setCurrentAccount(null);
   }
 
-  function changeMyBids(id) {
-    fetch(`http://localhost:9292/user_bids/${id}`)
-    .then(response => response.json())
-    .then(bids => setMyBids(bids));
+  items.filter(item => item.open === true).forEach(item => {
+    if (timedif(item, false, currentTime) === "closed") {
+      fetch(`http://localhost:9292/items/${item.id}`, {
+      method: 'PATCH',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        open: false
+        })
+      })
+      .then(() => {
+        loadItems();
+        loadBids();
+      });
+    }
+  });
+
+  const myBids = (currentAccount ? bids.filter(bid => bid.user_id === currentAccount.id).reverse() : []);
+
+  if (currentAccount) {
+    const latestBids = items.map(item => {
+      const itemBids = bids.filter(bid => bid.item_id === item.id);
+      return itemBids[itemBids.length - 1];
+    });
+    const myLatestBids = latestBids.filter(bid => myBids.includes(bid));
+    spendableMoney = currentAccount.money - myLatestBids.reduce((previousValue, currentValue) => previousValue + currentValue.bid_amount, 0);
+  }
+  else {
+    spendableMoney = null;
   }
 
-  useEffect(() => {
-    // console.log(currentPath);
-    loadData();
-  },[currentPath]);
-
-  useEffect(() => {
-    loadData();
-  },[]);
-
-  if (isLoggedIn) {
-    spendableMoney = currentAccount.money - myBids;
-  }
-  else spendableMoney = null;
-
-  if (items.length === 0) return null;
+  if (items.length === 0 || users.length === 0 || bids.length === 0 || !currentTime) return null;
 
   return (
     <Router>
-      <NavBar isLoggedIn={isLoggedIn} spendableMoney={spendableMoney} currentPath={currentPath}/>
+      <NavBar spendableMoney={spendableMoney} currentPath={currentPath} onPathChange={setCurrentPath}
+      currentAccountId={currentAccount ? currentAccount.id : 0} loadBids={loadBids}/>
       <Switch>
         <Route exact path='/'>
-          <HomePage items={items} onPathChange={onPathChange} 
-          isLoggedIn={isLoggedIn} />
+          <HomePage items={items} currentPath={currentPath}
+          currentAccount={currentAccount} bids={bids} currentTime={currentTime}/>
         </Route>
         <Route exact path={`/items/:id`}>
-          <Item onPathChange={onPathChange} account={currentAccount} 
-          changeMyBids={changeMyBids} spendableMoney={spendableMoney}/>
+          <Item currentAccount={currentAccount} users={users} 
+          loadBids={loadBids} spendableMoney={spendableMoney} items={items} bids={bids} 
+          currentPath={currentPath} currentTime={currentTime}/>
         </Route>
         <Route exact path='/login'>
-          <Login onPathChange={onPathChange} onLogin={onLogin}/>
+          <Login onLogin={onLogin} users={users}/>
         </Route>
         <Route exact path='/signup'>
-          <Signup onPathChange={onPathChange} onLogin={onLogin} users={users}/>
+          <Signup onLogin={onLogin} users={users}/>
         </Route>
         <Route exact path='/account'>
-          <Account onPathChange={onPathChange} account={currentAccount} onLogOut={onLogOut} 
-          spendableMoney={spendableMoney} changeSpendableMoney={reloadCurrentAccount}/>
+          <Account currentAccount={currentAccount} onLogOut={onLogOut} onLogin={onLogin}
+          spendableMoney={spendableMoney} currentPath={currentPath} myBids={myBids} 
+          loadUsers={loadUsers} users={users} items={items} bids={bids} currentTime={currentTime}/>
         </Route>
       </Switch>
     </Router>

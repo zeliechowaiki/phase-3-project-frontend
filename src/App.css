@@ -21,3 +21,11 @@ a {
 .disabled-link {
   pointer-events: none;
 }
+
+.last-bid {
+  font-weight: bold;
+}
+
+.closed-item {
+  color: gray;
+}
