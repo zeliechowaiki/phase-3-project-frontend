@@ -69,7 +69,7 @@ function Item({onPathChange, account, changeMyBids, spendableMoney}) {
 
   return (
     <div>
-      <h1>{item.name}</h1>
+      <h1 className='item-name'>{item.name}</h1>
       <img className= "item-image"src={item.image} alt={item.name}/>
       <p>Category: {item.category}</p>
       <p>Condition: {item.condition}</p>

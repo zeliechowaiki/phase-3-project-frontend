@@ -11,7 +11,7 @@ function HomePage({items, onPathChange, isLoggedIn}) {
   },[location.pathname, onPathChange]);
 
   return(
-    <div>
+    <div className='home-page'>
       <Clock></Clock>
       <h1 className="homepage-head">LOTS:</h1>
       {

@@ -6,6 +6,7 @@ import Item from './Item';
 import Login from './Login';
 import Signup from './Signup';
 import Account from './Account';
+import Ticker from './Ticker';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
+    <Ticker></Ticker>
     </div>
   );
 }

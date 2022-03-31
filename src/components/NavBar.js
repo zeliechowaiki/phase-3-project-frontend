@@ -6,13 +6,16 @@ function NavBar({isLoggedIn, spendableMoney, currentPath}) {
 
   return (
     <div>
-      <nav>
-      <NavLink className="nav-element"exact to="/"> Home </NavLink>
-      <NavLink className="nav-element"exact to={path}> Account </NavLink>
-      {
-        isLoggedIn && currentPath !=="/account" && spendableMoney ? <p>You have ${spendableMoney} to spend</p> : null
-      }
-      </nav>
+      <div className='main-logo'>
+        <header> Maximillian's</header>
+          <nav>
+          <NavLink className="nav-element"exact to="/"> Home </NavLink>
+          <NavLink className="nav-element"exact to={path}> Account </NavLink>
+          {
+            isLoggedIn && currentPath !=="/account" && spendableMoney ? <p className='spendable'> Funds available: ${spendableMoney}</p> : null
+          }
+          </nav>
+      </div>
     </div>
   )
 }

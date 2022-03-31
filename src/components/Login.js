@@ -49,7 +49,7 @@ function Login({onPathChange, onLogin}) {
         <label htmlFor="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" 
         required onChange={handleAccountChange} value={accountInfo.password}></input><br></br>
-        <button type="submit">Log in</button>
+        <button className='button'type="submit">Log in</button>
       </form>
       <p><a href='http://localhost:9292/users'>Forgot password?</a></p>
       <p>Don't have an account? <Link to='/signup'>Sign up</Link></p>

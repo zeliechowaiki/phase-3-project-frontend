@@ -75,9 +75,9 @@ function Account({account, onLogOut, onPathChange, spendableMoney, changeSpendab
   return (
     <div>
       <h1>{account.name}</h1>
-      <p>You have ${spendableMoney} to spend {
-        moneyFormIsHidden ? <button onClick={handleMoreClick}>Add more?</button>
-        : <button onClick={handleExitForm}>Exit form</button>
+      <p className='spendable'>Funds available: ${spendableMoney} {
+        moneyFormIsHidden ? <button className='button' onClick={handleMoreClick}>Add more?</button>
+        : <button className='button' onClick={handleExitForm}>Exit form</button>
         }
         </p>
       <div className={moneyFormIsHidden ? "hidden" : ""}>
@@ -88,11 +88,11 @@ function Account({account, onLogOut, onPathChange, spendableMoney, changeSpendab
           <label htmlFor="password"><b>Confirm</b></label>
           <input type="password" placeholder="Enter Password" name="password"
           required value={moneyFormInputs.password} onChange={handleMoneyChange}></input><br></br>
-          <button type="submit">Submit</button>
+          <button className='button' type="submit">Submit</button>
         </form>
       </div>
-      <button onClick={logOut}>Log out</button>
-      <p>In debt? <button onClick={deleteAccount}>Delete account</button></p>
+      <button className='button' onClick={logOut}>Log out</button>
+      <p>In debt? <button className='button' onClick={deleteAccount}>Delete account</button></p>
     </div>
   )
 }
