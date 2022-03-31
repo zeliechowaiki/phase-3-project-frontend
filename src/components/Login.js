@@ -1,24 +1,12 @@
-import {React, useEffect, useState} from 'react';
-import {Link, useLocation, useHistory} from 'react-router-dom';
+import {React, useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 
-function Login({onPathChange, onLogin}) {
-  let location = useLocation();
+function Login({ onLogin, users}) {
   let history = useHistory();
-  const [users, setUsers] = useState([]);
   const [accountInfo, setAccountInfo] = useState({
     username: '',
     password: ''
   });
-
-  useEffect(() => {
-    fetch('http://localhost:9292/users')
-    .then(response => response.json())
-    .then(users => setUsers(users));
-  },[])
-  
-  useEffect(() => {
-    onPathChange(location.pathname);
-  },[location.pathname, onPathChange]);
 
   function handleAccountChange(e) {
     const accountInfoCopy = {...accountInfo};
@@ -31,13 +19,13 @@ function Login({onPathChange, onLogin}) {
     users.forEach(user => {
       if (user.username === accountInfo.username && user.password === accountInfo.password) {
         setAccountInfo({
-        username: '',
-        password: ''
+          username: '',
+          password: ''
         });
         onLogin(user);
         history.push('/');
-    }})
-    
+      }
+    })
   }
 
   return(

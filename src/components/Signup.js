@@ -1,13 +1,8 @@
-import {React, useState, useEffect} from 'react';
-import {Link, useHistory, useLocation} from 'react-router-dom';
+import {React, useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
 
-function Signup({onPathChange, onLogin, users}) {
+function Signup({ onLogin, users}) {
   let history = useHistory();
-  let location = useLocation();
-  
-  useEffect(() => {
-    onPathChange(location.pathname);
-  },[location.pathname, onPathChange]);
 
   const [accountInfo, setAccountInfo] = useState({
     firstName: '',

@@ -1,11 +1,31 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {React, useEffect }from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
-function NavBar({isLoggedIn, spendableMoney, currentPath}) {
-  const path = isLoggedIn ? "/account" : "/login"
+function NavBar({spendableMoney, onPathChange, currentPath, currentAccountId, loadBids}) {
+  const path = spendableMoney ? "/account" : "/login";
+  let location = useLocation();
+
+  useEffect(() => {
+    setInterval(() => {
+      fetch('http://localhost:9292/random_bid', {
+      method: 'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        current_account_id: currentAccountId
+        })
+    })
+    .then(response => response.json())
+    .then(() => loadBids());
+    },1000000000);
+  },[]);
+
+  useEffect(() => {
+    onPathChange(location.pathname);
+  }, [location]);
 
   return (
     <div>
+<<<<<<< HEAD
       <div className='main-logo'>
         <header> Maximillian's</header>
           <nav>
@@ -16,6 +36,16 @@ function NavBar({isLoggedIn, spendableMoney, currentPath}) {
           }
           </nav>
       </div>
+=======
+      <nav>
+      <NavLink exact to="/"> Home </NavLink>
+      <NavLink exact to={path}> Account </NavLink>
+      {
+        spendableMoney && currentPath !=="/account" && spendableMoney ? <p>You have ${spendableMoney} to spend</p> : null
+      }
+      </nav>
+      {/* <p>{currentTime}</p> */}
+>>>>>>> Zelie
     </div>
   )
 }

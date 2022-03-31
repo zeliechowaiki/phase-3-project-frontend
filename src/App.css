@@ -146,9 +146,11 @@ align-self: left;
 .disabled-link {
   pointer-events: none;
 }
+
 .homepage-head {
   font-family: 'ELEGANT', sans-serif;
 }
+
 .account-form{
   font-family: 'ELEGANT', sans-serif;
 }
@@ -180,3 +182,11 @@ align-self: left;
 
 .hmove { animation: tickerh linear 30s infinite; }
 .hmove:hover { animation-play-state: paused; }
+
+.last-bid {
+  font-weight: bold;
+}
+
+.closed-item {
+  color: gray;
+}
