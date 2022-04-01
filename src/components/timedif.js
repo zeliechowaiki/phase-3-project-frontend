@@ -26,7 +26,7 @@ export default function timedif(item, ago, currentTime) {
     else if (timeDifSecs > 0) {
       return "1 second";
     }
-    else if (timeDifSecs > 0) {
+    else if (timeDifSecs === 0) {
       return "0 seconds";
     }
     else return "closed";

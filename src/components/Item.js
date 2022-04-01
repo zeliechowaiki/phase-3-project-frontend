@@ -54,35 +54,36 @@ function Item({currentAccount, spendableMoney,
   if (!currentAccount) return null;
 
   return (
-    <div>
-      <h1 className='item-name'>{item.name}</h1>
-      <img className= "item-image"src={item.image} alt={item.name}/>
-      <p>Category: {item.category}</p>
-      <p>Condition: {item.condition}</p>
+    <div className="item-page">
+      <div className="left-side">
+        <img className="item-page-image" src={item.image} alt={item.name}/>
+        <h1 className='item-page-name'>{item.name}</h1>
+        <p>Item description</p>
+        <div className="bid-history">
+          <p className="bid-history-label">Bid history:</p>
+          {
+            itemBids.reverse().map(bid => {
+              return <BidCard key={bid.id} bid={bid} items={items} currentPath={currentPath} 
+              currentAccount={currentAccount} users={users} currentTime={currentTime} bids={bids} ></BidCard>
+            })
+          }
+        </div>
+      </div>
+      <div className="right-side">
       <p>Starting price: ${item.starting_price}</p>
       <p>Current highest bid: ${highestBid}</p>
       {
-        bidFormIsHidden ? <button onClick={onBidClick}>Bid</button>
-        : <button onClick={() => setBidFormIsHidden(true)}>Exit form</button>
+        bidFormIsHidden ? <button onClick={onBidClick} className="bid-button">Bid</button>
+        : <button onClick={() => setBidFormIsHidden(true)} className="bid-button">Exit form</button>
       }
-      <div className={bidFormIsHidden ? "hidden" : ""}>
-        <form onSubmit={handleBidSubmit}>
+        <form onSubmit={handleBidSubmit} className={bidFormIsHidden ? "hidden" : "bid-form"}>
           <label htmlFor="amount">Choose amount</label>
           <input type="number" id="amount-dropdown" name="amount" min={highestBid+1} max={currentAccount.money} 
           required onChange={(e) => setBidAmount(e.target.value)} value={bidAmount}></input><br></br>
-          <button type="submit">Submit</button>
+          <button className="bid-button" type="submit">Submit</button>
         </form>
+      <p className="item-page-time" >Auction closes in {timeRemaining}</p>
       </div>
-      <div>
-        <p>Bids:</p>
-        {
-          itemBids.reverse().map(bid => {
-            return <BidCard key={bid.id} bid={bid} items={items} currentPath={currentPath} 
-            currentAccount={currentAccount} users={users} currentTime={currentTime} bids={bids} ></BidCard>
-          })
-        }
-      </div>
-      <p>Auction closes in {timeRemaining}</p>
     </div>
   )
 }

@@ -66,7 +66,11 @@ function App() {
         open: false
         })
       })
-      .then(() => {
+      .then(response => response.json())
+      .then((winner) => {
+        if (winner === currentAccount) {
+          alert(`You've won ${item.name}!`)
+        }
         loadItems();
         loadBids();
       });
@@ -117,7 +121,7 @@ function App() {
         </Route>
       </Switch>
     </Router>
-    <Ticker></Ticker>
+    <Ticker bids={bids} currentTime={currentTime} items={items} users={users}></Ticker>
     </div>
   );
 }

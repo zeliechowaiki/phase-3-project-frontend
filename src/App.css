@@ -1,28 +1,23 @@
 .app {
-  background-image: url("https://cdn.pixabay.com/photo/2017/06/13/13/51/marble-2398946__480.jpg");
-  background-repeat: none;
-  background-size: contain;
   margin:0px;
   height:100vh;
-  
-}
-.home-page{
-  background-image: url("https://cdn.pixabay.com/photo/2017/06/13/13/51/marble-2398946__480.jpg");
-  background-repeat: none;
-  background-size: contain;
-  height:100%;
-  height:100vh;
-  overflow:scroll;
 }
 
+/* html { 
+  background: url("https://cdn.pixabay.com/photo/2017/06/13/13/51/marble-2398946__480.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
 
 /* CSS */
-.button {
+button {
   appearance: none;
-  background-color: grey;
+  background-color: rgb(219, 219, 219);
   border-radius: 40em;
   border-style: none;
-  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-shadow: #9e9e9e 0 -12px 6px inset;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
@@ -31,9 +26,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -.24px;
-  margin: 0;
   outline: none;
-  padding: 1rem 1.3rem;
   quotes: auto;
   text-align: center;
   text-decoration: none;
@@ -43,100 +36,120 @@
   touch-action: manipulation;
 }
 
-.button:hover {
+button:hover {
   background-color: #afa793dc;
   box-shadow: #494644 0 -6px 8px inset;
-  transform: scale(1.08);
+  /* transform: scale(1.08); */
 }
 
-.button:active {
+button:active {
   transform: scale(1.025);
 }
 
 @media (min-width: 768px) {
-  .button {
+  button {
     font-family:'ELEGANT', sans-serif; 
     font-weight: bold;
     font-size: .75rem;
-    padding: .75rem 2rem;
+    /* padding: .75rem 2rem; */
   }
 }
+
+header {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
 a {
   color: inherit;
   height:100%;
+  text-decoration: none;
 }
+
 .main-logo{
   font-family:'ELEGANT', sans-serif;
   font-size: 65px;
   display:flex;
-  gap: 60px;
+  box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 200;
 }
 
 .item-card {
-  align-items: center;
-  display:grid;
-  gap:50px;
-  width: 75%;
-  outline: 1px solid;
-  display: inline-block;
   margin-bottom: 30px;
+  flex: 1 1 0px;
   font-family: 'ELEGANT', sans-serif;
-  border-style: double;
- border-radius: 8px;
- padding-bottom: 0%;
- margin-bottom: 0%;
- margin-right:10%
 }
 
 .spendable{
-font-size: 25px;
+/* font-size: 30px;
 font-family:'ELEGANT', sans-serif;
-font-weight:bold;
+font-weight:bold; */
 font-style: italic;
-align-self: left;
+/* align-self: left;
+text-align: center; */
 }
 
 .item-card > * {
   text-align: center;
-  width:150px;
-  height:150px;
   object-fit: cover;
   font-family: 'ELEGANT', sans-serif;
   padding-bottom: 0%;
-  display:grid;
-
+  width: 100%;
+  align-items: center;
 }
 /* .banner{
   display:inline-block;
 } */
 
-.nav-element{
+nav {
+  width: 75%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+nav > * {
   font-family: 'ELEGANT', sans-serif;
   font-size: 30px;
   font-weight: bolder;
+  text-align: center;
 }
+
 .item-name{
+  align-items: center;
+  width: 90%;
   font-family: 'ELEGANT', sans-serif;
-  text-align: left;
-  vertical-align: middle;
-  font-size:22px;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item-bid{
-  text-align: left;
-  vertical-align: middle;
-  font-size: 22px;
-  font-weight: bold;
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 0px 0px 0px 10px;
+  text-align: center;
+  margin: 0;
+  padding: 4px;
 }
 
 .item-image{
-   transition: all 1.2s ease-in-out; 
-   box-shadow: 0px 0px 50px black;
-   /* outline-width: 30px; */
+   transition: all 1s ease-in-out; 
+   box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.3);
+   width: 100%;
+   display: block;
 }
-.item-image:hover {
+.item-image:not(.closed-item):hover {
   transform: scale(1.1);
-  
 }
 
 .hidden {
@@ -148,6 +161,7 @@ align-self: left;
 }
 
 .homepage-head {
+  margin-left: 15px;
   font-family: 'ELEGANT', sans-serif;
 }
 
@@ -158,7 +172,10 @@ align-self: left;
 .hwrap {
   overflow: hidden; 
   opacity: 100%;
-  /* background: #eee; */
+  background: black;
+  width: 100%;
+  bottom:0;
+  position:fixed;
 }
 
 .hmove { display: flex; }
@@ -172,6 +189,7 @@ align-self: left;
   font-family: 'ELEGANT', sans-serif;
   font-size: 28px;
   font-weight: bold;
+  color: #eee;
 
 }
 
@@ -180,7 +198,7 @@ align-self: left;
   100% { transform: translate3d(-400%, 0, 0); }
 }
 
-.hmove { animation: tickerh linear 30s infinite; }
+.hmove { animation: tickerh linear 45s infinite; }
 .hmove:hover { animation-play-state: paused; }
 
 .last-bid {
@@ -189,4 +207,150 @@ align-self: left;
 
 .closed-item {
   color: gray;
+}
+
+.closed-item img {
+  filter: brightness(40%);
+}
+
+.homepage-img {
+  display: block;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image-container {
+  position: relative;
+  /* text-align: center; */
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 22px;
+}
+
+.item-time {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+}
+
+.image-container:hover .item-time {
+  display: block;
+}
+
+.image-container:hover .item-bid {
+  display: block;
+}
+
+.item-page {
+  display: flex;
+  /* font-family: 'ELEGANT', sans-serif; */
+}
+
+.left-side {
+  width: 65%;
+}
+
+.left-side > * {
+  margin-left: 18%;
+}
+
+.item-page-image {
+  width: 75%;
+  margin-top: 40px;
+}
+
+.item-page-name {
+  font-family: 'ELEGANT', sans-serif;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.bid-history {
+  margin-bottom: 100px;
+}
+
+.bid-card {
+  margin: 0px;
+  font-size: 12px;
+}
+
+.bid-history-label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.right-side {
+  top: 200px;
+  right: 50px;
+  position: fixed;
+  height: 400px;
+  width: 25%;
+  background-color: rgba(250, 241, 228, 0.6);
+}
+
+.right-side > * {
+  margin-left: 10px;
+}
+
+.item-page-time {
+  margin: 0;
+  margin-left: 10px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.bid-button {
+  width: 100px;
+  font-size: 18px;
+  padding: 3px;
+  margin-bottom: 10px;
+  /* margin: 0;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 120px;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.login-form {
+  background-image: url("https://zavarellagraniteandmarble.com/wp-content/uploads/2018/06/page-marble.jpg");
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
+.div-in-div-sorry {
+  font-size: 25px;
+  margin-top: 200px;
+}
+
+.div-in-div-sorry a {
+  text-decoration: underline;
+}
+
+.login-button {
+  font-size: 25px;
+  padding: 5px;
 }
