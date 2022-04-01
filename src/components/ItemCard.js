@@ -34,18 +34,6 @@ function ItemCard({item, currentAccount, bids, currentTime, currentPath}) {
       {
         (currentAccount && item.open) ? 
         <Link to={`items/${item.id}`}>
-<<<<<<< HEAD
-          <div className="item-card">
-            <img className= "item-image" src={item.image} alt={item.name}/>
-            <h4 className="item-name">{item.name}</h4>
-            <p className="item-bid">Highest bid: ${highestBid}</p>
-          </div>
-        </Link> : 
-        <div className="item-card" onClick={handleItemClick}>
-          <img className= "item-image" src={item.image} alt={item.name}/>
-          <h4 className="item-name">{item.name}</h4>
-          <p className="item-bid">Highest bid: ${highestBid}</p>
-=======
           <div >
             <h4>{item.name}</h4>
             <p>Highest bid: ${highestBid}</p>
@@ -56,7 +44,6 @@ function ItemCard({item, currentAccount, bids, currentTime, currentPath}) {
           <h4>{item.name}</h4>
           <p>Highest bid: ${highestBid}</p>
           <p>{item.open ? `Auction closes in ${timeRemaining}` : "Auction closed"}</p>
->>>>>>> Zelie
       </div>
       }
     </div>

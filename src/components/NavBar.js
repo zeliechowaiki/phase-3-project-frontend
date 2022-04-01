@@ -25,27 +25,16 @@ function NavBar({spendableMoney, onPathChange, currentPath, currentAccountId, lo
 
   return (
     <div>
-<<<<<<< HEAD
       <div className='main-logo'>
         <header> Maximillian's</header>
           <nav>
           <NavLink className="nav-element"exact to="/"> Home </NavLink>
           <NavLink className="nav-element"exact to={path}> Account </NavLink>
           {
-            isLoggedIn && currentPath !=="/account" && spendableMoney ? <p className='spendable'> Funds available: ${spendableMoney}</p> : null
+            // isLoggedIn && currentPath !=="/account" && spendableMoney ? <p className='spendable'> Funds available: ${spendableMoney}</p> : null
           }
           </nav>
       </div>
-=======
-      <nav>
-      <NavLink exact to="/"> Home </NavLink>
-      <NavLink exact to={path}> Account </NavLink>
-      {
-        spendableMoney && currentPath !=="/account" && spendableMoney ? <p>You have ${spendableMoney} to spend</p> : null
-      }
-      </nav>
-      {/* <p>{currentTime}</p> */}
->>>>>>> Zelie
     </div>
   )
 }
