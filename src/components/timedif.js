@@ -1,7 +1,6 @@
 export default function timedif(item, ago, currentTime) {
 
   if (!item) return null;
-
   const itemTime = ago ? item.created_at.split(/T|\./)[1] : item.auction_end.split(/T|\./)[1];
 
   const currentTimeSecs = parseInt(currentTime.split(':')[0] * 3600) + parseInt(currentTime.split(':')[1] * 60) + parseInt(currentTime.split(':')[2]);
