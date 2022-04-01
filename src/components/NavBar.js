@@ -16,7 +16,7 @@ function NavBar({spendableMoney, onPathChange, currentPath, currentAccountId, lo
     })
     .then(response => response.json())
     .then(() => loadBids());
-    },1000000000);
+    },20000);
   },[]);
 
   useEffect(() => {

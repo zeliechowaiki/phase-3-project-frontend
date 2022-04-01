@@ -58,20 +58,12 @@ function Item({currentAccount, spendableMoney,
       <div className="left-side">
         <img className="item-page-image" src={item.image} alt={item.name}/>
         <h1 className='item-page-name'>{item.name}</h1>
-        <p>Item description</p>
-        <div className="bid-history">
-          <p className="bid-history-label">Bid history:</p>
-          {
-            itemBids.reverse().map(bid => {
-              return <BidCard key={bid.id} bid={bid} items={items} currentPath={currentPath} 
-              currentAccount={currentAccount} users={users} currentTime={currentTime} bids={bids} ></BidCard>
-            })
-          }
-        </div>
+        <hr className="item-page-line"></hr>
+        <p className="item-page-condition">Condition: {item.condition}</p>
       </div>
       <div className="right-side">
-      <p>Starting price: ${item.starting_price}</p>
-      <p>Current highest bid: ${highestBid}</p>
+      <p className="item-page-price">Starting price: ${item.starting_price}</p>
+      <p className="item-page-price">Current highest bid: ${highestBid}</p>
       {
         bidFormIsHidden ? <button onClick={onBidClick} className="bid-button">Bid</button>
         : <button onClick={() => setBidFormIsHidden(true)} className="bid-button">Exit form</button>
@@ -82,6 +74,15 @@ function Item({currentAccount, spendableMoney,
           required onChange={(e) => setBidAmount(e.target.value)} value={bidAmount}></input><br></br>
           <button className="bid-button" type="submit">Submit</button>
         </form>
+        <div className="bid-history">
+          <p className="bid-history-label">Bid history:</p>
+          {
+            itemBids.reverse().map(bid => {
+              return <BidCard key={bid.id} bid={bid} items={items} currentPath={currentPath} 
+              currentAccount={currentAccount} users={users} currentTime={currentTime} bids={bids} ></BidCard>
+            })
+          }
+        </div>
       <p className="item-page-time" >Auction closes in {timeRemaining}</p>
       </div>
     </div>

@@ -24,6 +24,15 @@ function HomePage({items, currentAccount, bids, currentTime, currentPath}) {
         })
       }
       </div>
+      <h1 className="homepage-head">REAL ESTATE:</h1>
+      <div className="category-container">
+      {
+        items.filter(item => item.category === "real estate").map(item => {
+          return <ItemCard key={item.id} item={item} currentTime={currentTime}
+          currentAccount={currentAccount} bids={bids} currentPath={currentPath}/>
+        })
+      }
+      </div>
       <h1 className="homepage-head">MEMORABILLIA:</h1>
       <div className="category-container">
       {

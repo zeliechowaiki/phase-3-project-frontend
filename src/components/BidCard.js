@@ -17,11 +17,11 @@ function BidCard({bid, currentAccount, currentPath, users, items, currentTime, b
         {
           item.open ? 
           <Link to={`items/${item.id}`}>
-          <p className={`${isLastBid ? "last-bid" : ""} ${item.open ? "" : "closed-item" }`}>
+          <p className={`${isLastBid ? "last-bid" : "not-last-bid"} ${item.open ? "" : "closed-item" }`}>
             {timeSince} ago: You bid ${bid.bid_amount}{currentPath === "/account" ? ` on ${item.name}`: ""}
           </p>
           </Link> :
-            <p className={`${isLastBid ? "last-bid" : ""} ${item.open ? "" : "closed-item" }`}>
+            <p className={`${isLastBid ? "last-bid" : "not-last-bid"} ${item.open ? "" : "closed-item" }`}>
             {timeSince ? timeSince : "0 seconds"} ago: You bid ${bid.bid_amount}{currentPath === "/account" ? ` on ${item.name}`: ""}
           </p>
         }
