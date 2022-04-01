@@ -84,7 +84,7 @@ function App() {
       const itemBids = bids.filter(bid => bid.item_id === item.id);
       return itemBids[itemBids.length - 1];
     });
-    const myLatestBids = latestBids.filter(bid => myBids.includes(bid));
+    const myLatestBids = latestBids.filter(bid => bid.user_id === currentAccount.id);
     spendableMoney = currentAccount.money - myLatestBids.reduce((previousValue, currentValue) => previousValue + currentValue.bid_amount, 0);
   }
   else {

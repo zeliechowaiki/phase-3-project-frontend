@@ -72,13 +72,15 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
 
   return (
     <div>
+      <div className="account-columns">
+      <div className="account-left-side">
       <h1>{currentAccount.name}</h1>
       <p className="spendable" >Funds available: ${spendableMoney} {
         moneyFormIsHidden ? <button onClick={() => setMoneyFormIsHidden(false)}>Add more?</button>
         : <button onClick={() => setMoneyFormIsHidden(true)}>Exit form</button>
         }
         </p>
-      <div className={moneyFormIsHidden ? "hidden" : ""}>
+      <div className={moneyFormIsHidden ? "hidden" : "account-money-form"}>
         <form className="account-form"onSubmit={handleMoneyFormSubmit}>
           <label htmlFor="amount">Choose amount</label>
           <input type="number" id="amount-dropdown" name="amount"
@@ -89,8 +91,9 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
           <button className='button' type="submit">Submit</button>
         </form>
       </div>
-      <div className={myBids.length === 0 ? "hidden" : ""}>
-        <p>Bids:</p>
+      </div>
+      <div className={myBids.length === 0 ? "hidden" : "account-right-side"}>
+        <p className="account-history-title">Bid history:</p>
         {
           myBids.map(bid => {
             return <BidCard currentPath={currentPath} key={bid.id} bid={bid} bids={bids}
@@ -98,17 +101,22 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
           })
         }
       </div>
-      <div className={myWonItems.length === 0 ? "hidden" : ""}>
-        <p>Items won:</p>
+      </div>
+      <div className={myWonItems.length === 0 ? "hidden" : "items-won-section"}>
+        <p className="items-won-title">Items won:</p>
+        <div className="items-won-container">
         {
           myWonItems.map(item => {
             return <ItemCard key={item.id} item={item} currentTime={currentTime}
             currentAccount={currentAccount} bids={bids} currentPath={currentPath}/>
           })
         }
+        </div>
       </div>
+      <div className="log-out">
       <button onClick={logOut}>Log out</button>
       <p>In debt? <button onClick={deleteAccount}>Delete account</button></p>
+      </div>
     </div>
   )
 }

@@ -32,11 +32,11 @@ function Login({ onLogin, users}) {
     <div className="login-form">
       <div className="div-in-div-sorry">
       <form onSubmit={onLoginSubmit}>
-        <label htmlFor="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" 
+        <label htmlFor="username" className="form-item"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" className="form-item"
         required onChange={handleAccountChange} value={accountInfo.username}></input><br></br>
-        <label htmlFor="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" 
+        <label htmlFor="password" className="form-item"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" className="form-item"
         required onChange={handleAccountChange} value={accountInfo.password}></input><br></br>
         <button className='login-button' type="submit">Log in</button>
       </form>

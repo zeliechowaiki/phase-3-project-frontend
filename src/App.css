@@ -275,18 +275,20 @@ nav > * {
 }
 
 .item-page-image {
-  width: 75%;
-  margin-top: 40px;
+  width: 70%;
+  margin-top: 20px;
 }
 
 .item-page-name {
   font-family: 'ELEGANT', sans-serif;
   text-align: left;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .bid-history {
   margin-bottom: 100px;
+  font-family: 'ELEGANT', sans-serif;
 }
 
 .bid-card {
@@ -315,8 +317,11 @@ nav > * {
 .item-page-time {
   margin: 0;
   margin-left: 10px;
+  font-size: 18px;
   position: absolute;
   bottom: 10px;
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bold;    
 }
 
 .bid-button {
@@ -353,4 +358,108 @@ nav > * {
 .login-button {
   font-size: 25px;
   padding: 5px;
+  margin-top: 20px;
+}
+
+.item-page-line {
+  width: 40%;
+  border-top: 2px solid black;
+}
+
+.item-page-condition {
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 80px;
+}
+
+.item-page-price {
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bold;  
+  font-size: 18px;
+}
+
+.account-columns {
+  display:flex;
+}
+
+.account-columns > * {
+  width: 50%;
+}
+
+.account-left-side {
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bolder;  
+  font-size: 24px;
+  margin-left: 10%;  
+  margin-top: 20px;
+}
+
+.account-money-form {
+  font-size: 20px;
+  position: absolute;
+  text-align: center;
+}
+
+.account-right-side {
+  font-family: 'ELEGANT', sans-serif;
+  font-size: 18px;
+  margin-right: 10%;  
+  margin-top: 40px;
+}
+
+.account-right-side > * {
+  margin-left: 20%;
+}
+
+.account-left-side button {
+  font-size: 18px;
+}
+
+.account-history-title {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.log-out {
+  position: relative;
+  bottom: -150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 20px;
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bold;
+}
+
+.log-out button {
+  font-size: 18px;
+}
+
+.not-last-bid {
+  font-weight: normal;
+}
+
+.account-item-card {
+  margin:0;
+}
+
+.items-won-container {
+  display: flex;
+}
+
+.items-won-container > * {
+  width: 25%;
+}
+
+.items-won-title {
+  font-size: 20px;
+  font-family: 'ELEGANT', sans-serif;
+  font-weight: bold;
+}
+
+.items-won-section {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
 }

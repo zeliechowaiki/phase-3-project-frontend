@@ -6,8 +6,9 @@ function ItemCard({item, currentAccount, bids, currentTime, currentPath}) {
 
   if (currentPath === '/account') {
     return(
-      <div className="item-card">
-          <h4>{item.name}</h4>
+      <div className="item-card account-item-card">
+        <img  src={item.image} alt={item.name}/>
+        <h4>{item.name}</h4>
       </div>
     )
   }
