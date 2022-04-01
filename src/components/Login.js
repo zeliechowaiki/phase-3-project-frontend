@@ -29,7 +29,8 @@ function Login({ onLogin, users}) {
   }
 
   return(
-    <div>
+    <div className="login-form">
+      <div className="div-in-div-sorry">
       <form onSubmit={onLoginSubmit}>
         <label htmlFor="username"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" 
@@ -37,10 +38,11 @@ function Login({ onLogin, users}) {
         <label htmlFor="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" 
         required onChange={handleAccountChange} value={accountInfo.password}></input><br></br>
-        <button className='button'type="submit">Log in</button>
+        <button className='login-button' type="submit">Log in</button>
       </form>
       <p><a href='http://localhost:9292/users'>Forgot password?</a></p>
       <p>Don't have an account? <Link to='/signup'>Sign up</Link></p>
+      </div>
     </div>
   )
 }

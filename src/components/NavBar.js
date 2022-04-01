@@ -24,28 +24,15 @@ function NavBar({spendableMoney, onPathChange, currentPath, currentAccountId, lo
   }, [location]);
 
   return (
-    <div>
-<<<<<<< HEAD
-      <div className='main-logo'>
-        <header> Maximillian's</header>
-          <nav>
-          <NavLink className="nav-element"exact to="/"> Home </NavLink>
-          <NavLink className="nav-element"exact to={path}> Account </NavLink>
-          {
-            isLoggedIn && currentPath !=="/account" && spendableMoney ? <p className='spendable'> Funds available: ${spendableMoney}</p> : null
-          }
-          </nav>
-      </div>
-=======
+    <div className="main-logo">
+      <header> Maximillian's</header>
       <nav>
-      <NavLink exact to="/"> Home </NavLink>
-      <NavLink exact to={path}> Account </NavLink>
+      <NavLink exact to="/" className="nav-element"> <p>Home</p> </NavLink>
+      <NavLink exact to={path} className="nav-element"> <p>Account</p> </NavLink>
       {
-        spendableMoney && currentPath !=="/account" && spendableMoney ? <p>You have ${spendableMoney} to spend</p> : null
+        spendableMoney && currentPath !=="/account" && spendableMoney ? <p className="spendable" >Funds available: ${spendableMoney}</p> : null
       }
       </nav>
-      {/* <p>{currentTime}</p> */}
->>>>>>> Zelie
     </div>
   )
 }

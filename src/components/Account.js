@@ -72,23 +72,16 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
 
   return (
     <div>
-<<<<<<< HEAD
-      <h1>{account.name}</h1>
-      <p className='spendable'>Funds available: ${spendableMoney} {
-        moneyFormIsHidden ? <button className='button' onClick={handleMoreClick}>Add more?</button>
-        : <button className='button' onClick={handleExitForm}>Exit form</button>
-=======
       <h1>{currentAccount.name}</h1>
-      <p>You have ${spendableMoney} to spend {
+      <p className="spendable" >Funds available: ${spendableMoney} {
         moneyFormIsHidden ? <button onClick={() => setMoneyFormIsHidden(false)}>Add more?</button>
         : <button onClick={() => setMoneyFormIsHidden(true)}>Exit form</button>
->>>>>>> Zelie
         }
         </p>
       <div className={moneyFormIsHidden ? "hidden" : ""}>
         <form className="account-form"onSubmit={handleMoneyFormSubmit}>
           <label htmlFor="amount">Choose amount</label>
-          <input type="number" id="amount-dropdown" name="amount" min="25" max="10000" 
+          <input type="number" id="amount-dropdown" name="amount"
           required step="5" value={moneyFormInputs.amount} onChange={handleMoneyChange}></input><br></br>
           <label htmlFor="password"><b>Confirm</b></label>
           <input type="password" placeholder="Enter Password" name="password"
@@ -96,10 +89,6 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
           <button className='button' type="submit">Submit</button>
         </form>
       </div>
-<<<<<<< HEAD
-      <button className='button' onClick={logOut}>Log out</button>
-      <p>In debt? <button className='button' onClick={deleteAccount}>Delete account</button></p>
-=======
       <div className={myBids.length === 0 ? "hidden" : ""}>
         <p>Bids:</p>
         {
@@ -120,7 +109,6 @@ function Account({currentAccount, onLogOut, spendableMoney, myBids,
       </div>
       <button onClick={logOut}>Log out</button>
       <p>In debt? <button onClick={deleteAccount}>Delete account</button></p>
->>>>>>> Zelie
     </div>
   )
 }

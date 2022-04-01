@@ -18,7 +18,7 @@ function BidCard({bid, currentAccount, currentPath, users, items, currentTime, b
           item.open ? 
           <Link to={`items/${item.id}`}>
           <p className={`${isLastBid ? "last-bid" : ""} ${item.open ? "" : "closed-item" }`}>
-            {timeSince ? timeSince : "0 seconds"} ago: You bid ${bid.bid_amount}{currentPath === "/account" ? ` on ${item.name}`: ""}
+            {timeSince} ago: You bid ${bid.bid_amount}{currentPath === "/account" ? ` on ${item.name}`: ""}
           </p>
           </Link> :
             <p className={`${isLastBid ? "last-bid" : ""} ${item.open ? "" : "closed-item" }`}>
@@ -33,10 +33,10 @@ function BidCard({bid, currentAccount, currentPath, users, items, currentTime, b
     <div>
       {
         bid.user_id === currentAccount.id ?
-        <p className={isLastBid ? "last-bid" : ""}>
+        <p className={isLastBid ? "last-bid bid-card" : "bid-card"}>
           {timeSince ? timeSince : "0 seconds"} ago: You bid ${bid.bid_amount}{currentPath === "/account" ? ` on ${item.name}`: ""}
         </p> :
-        <p className={isLastBid ? "last-bid" : ""}>
+        <p className={isLastBid ? "last-bid bid-card" : "bid-card"}>
           {timeSince ? timeSince : "0 seconds"} ago: {user.name} bid ${bid.bid_amount}
         </p>
       }

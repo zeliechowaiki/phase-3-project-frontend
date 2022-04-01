@@ -1,13 +1,23 @@
-import React from 'react'
+import React from 'react';
+import timedif from './timedif';
 
-function Ticker() {
+function Ticker({bids, currentTime, users, items}) {
+
+  if (!bids || !items || !users) return null;
+
   return (
-    <div class="hwrap"><div class="hmove">
-  <div class="hitem">fist bid</div>
-  <div class="hitem">second bid</div>
-  <div class="hitem">third bid</div>
-  <div class="hitem">BING BONG</div>
-</div></div>
+    <div className="hwrap">
+      <div className="hmove">
+        {
+          bids.slice(-4).map(bid => {
+            return (
+              <div className="hitem" key={bid.id}>
+                {timedif(bid, true, currentTime)} ago: {users.find(user => user.id === bid.user_id).name} bid ${bid.bid_amount} on {items.find(item => item.id === bid.item_id).name}
+              </div>
+          )})
+        }
+      </div>
+    </div>
   )
 }
 
