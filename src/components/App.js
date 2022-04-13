@@ -67,10 +67,7 @@ function App() {
         })
       })
       .then(response => response.json())
-      .then((winner) => {
-        if (winner === currentAccount) {
-          alert(`You've won ${item.name}!`)
-        }
+      .then(() => {
         loadItems();
         loadBids();
       });
@@ -78,14 +75,16 @@ function App() {
   });
 
   const myBids = (currentAccount ? bids.filter(bid => bid.user_id === currentAccount.id).reverse() : []);
-
-  if (currentAccount) {
-    const latestBids = items.map(item => {
-      const itemBids = bids.filter(bid => bid.item_id === item.id);
-      return itemBids[itemBids.length - 1];
+  console.log(myBids ? myBids : null);
+  if (currentAccount && myBids.length > 0) {
+    const myLatestBids = items.map(item => {
+      const myItemBids = myBids.filter(bid => bid.item_id === item.id);
+      return (myItemBids.length > 0 ? myItemBids[myItemBids.length - 1] : {bid_amount: 0});
     });
-    const myLatestBids = latestBids.filter(bid => bid.user_id === currentAccount.id);
     spendableMoney = currentAccount.money - myLatestBids.reduce((previousValue, currentValue) => previousValue + currentValue.bid_amount, 0);
+  }
+  else if (currentAccount) {
+    spendableMoney = currentAccount.money;
   }
   else {
     spendableMoney = null;

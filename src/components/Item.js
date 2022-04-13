@@ -56,7 +56,7 @@ function Item({currentAccount, spendableMoney,
   return (
     <div className="item-page">
       <div className="left-side">
-        <img className="item-page-image" src={item.image} alt={item.name}/>
+        <img className="item-page-image" src={`/${item.image}`} alt={item.name}/>
         <h1 className='item-page-name'>{item.name}</h1>
         <hr className="item-page-line"></hr>
         <p className="item-page-condition">Condition: {item.condition}</p>
